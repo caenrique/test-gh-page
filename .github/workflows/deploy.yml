@@ -35,10 +35,15 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Build with pandoc
+      - name: Build index.hmtl
         uses: docker://pandoc/core:2.9
         with:
           args: "--standalone -f markdown -t html5 -o index.html index.md -c styles.css"
+
+      - name: Build second.html
+        uses: docker://pandoc/core:2.9
+        with:
+          args: "--standalone -f markdown -t html5 -o second.html second.md -c styles.css"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
